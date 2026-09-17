@@ -1,8 +1,8 @@
 // Backend API. Local dev hits the uvicorn server; anything else (GitHub Pages)
-// hits the deployed API. Replace the onrender.com host after you deploy api.py.
+// hits the deployed API on Render.
 const API_BASE = ['localhost', '127.0.0.1', ''].includes(location.hostname)
     ? 'http://127.0.0.1:8000'
-    : 'https://YOUR-API.onrender.com';
+    : 'https://mizubuddy.onrender.com';
 
 document.addEventListener('DOMContentLoaded', () => {
 
