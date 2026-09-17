@@ -1,3 +1,9 @@
+// Backend API. Local dev hits the uvicorn server; anything else (GitHub Pages)
+// hits the deployed API. Replace the onrender.com host after you deploy api.py.
+const API_BASE = ['localhost', '127.0.0.1', ''].includes(location.hostname)
+    ? 'http://127.0.0.1:8000'
+    : 'https://YOUR-API.onrender.com';
+
 document.addEventListener('DOMContentLoaded', () => {
 
     // ==========================================
@@ -504,7 +510,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function getChatResponse(userMessage) {
         try {
             const sampleData = getCurrentSampleData();
-            const response = await fetch('http://127.0.0.1:8000/chat', {
+            const response = await fetch(`${API_BASE}/chat`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -658,7 +664,7 @@ document.addEventListener('DOMContentLoaded', () => {
             formData.forEach((value, key) => { data[key] = parseFloat(value); });
 
             try {
-                const response = await fetch('http://127.0.0.1:8000/predict', {
+                const response = await fetch(`${API_BASE}/predict`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data)
